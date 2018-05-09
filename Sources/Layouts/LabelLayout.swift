@@ -17,11 +17,15 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
     open let font: UIFont
     open let numberOfLines: Int
     open let lineHeight: CGFloat
+    open let lineBreakMode: NSLineBreakMode
+    open let textAlginment: NSTextAlignment
 
     public init(text: Text,
                 font: UIFont = LabelLayoutDefaults.defaultFont,
                 lineHeight: CGFloat? = nil,
                 numberOfLines: Int = LabelLayoutDefaults.defaultNumberOfLines,
+                lineBreakMode: NSLineBreakMode = LabelLayoutDefaults.defaultLineBreakMode,
+                textAlignment: NSTextAlignment = LabelLayoutDefaults.defaultTextAlignment,
                 alignment: Alignment = LabelLayoutDefaults.defaultAlignment,
                 flexibility: Flexibility = LabelLayoutDefaults.defaultFlexibility,
                 viewReuseId: String? = nil,
@@ -31,6 +35,8 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
         self.numberOfLines = numberOfLines
         self.font = font
         self.lineHeight = lineHeight ?? font.lineHeight
+        self.lineBreakMode = lineBreakMode
+        self.textAlginment = textAlignment
         super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, config: config)
     }
 
@@ -38,6 +44,8 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
          font: UIFont = LabelLayoutDefaults.defaultFont,
          lineHeight: CGFloat? = nil,
          numberOfLines: Int = LabelLayoutDefaults.defaultNumberOfLines,
+         lineBreakMode: NSLineBreakMode = LabelLayoutDefaults.defaultLineBreakMode,
+         textAlignment: NSTextAlignment = LabelLayoutDefaults.defaultTextAlignment,
          alignment: Alignment = LabelLayoutDefaults.defaultAlignment,
          flexibility: Flexibility = LabelLayoutDefaults.defaultFlexibility,
          viewReuseId: String? = nil,
@@ -48,6 +56,8 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
         self.numberOfLines = numberOfLines
         self.font = font
         self.lineHeight = lineHeight ?? font.lineHeight
+        self.lineBreakMode = lineBreakMode
+        self.textAlginment = textAlignment
         super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, viewClass: viewClass ?? Label.self, config: config)
     }
 
@@ -55,6 +65,8 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
          font: UIFont = LabelLayoutDefaults.defaultFont,
          lineHeight: CGFloat? = nil,
          numberOfLines: Int = LabelLayoutDefaults.defaultNumberOfLines,
+         lineBreakMode: NSLineBreakMode = LabelLayoutDefaults.defaultLineBreakMode,
+         textAlignment: NSTextAlignment = LabelLayoutDefaults.defaultTextAlignment,
          alignment: Alignment = LabelLayoutDefaults.defaultAlignment,
          flexibility: Flexibility = LabelLayoutDefaults.defaultFlexibility,
          viewReuseId: String? = nil,
@@ -65,6 +77,8 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
         self.numberOfLines = numberOfLines
         self.font = font
         self.lineHeight = lineHeight ?? font.lineHeight
+        self.lineBreakMode = lineBreakMode
+        self.textAlginment = textAlignment
         super.init(alignment: alignment, flexibility: flexibility, viewReuseId: viewReuseId, viewClass: viewClass ?? Label.self, config: config)
     }
 
@@ -74,6 +88,8 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
                             font: UIFont = LabelLayoutDefaults.defaultFont,
                             lineHeight: CGFloat? = nil,
                             numberOfLines: Int = LabelLayoutDefaults.defaultNumberOfLines,
+                            lineBreakMode: NSLineBreakMode = LabelLayoutDefaults.defaultLineBreakMode,
+                            textAlignment: NSTextAlignment = LabelLayoutDefaults.defaultTextAlignment,
                             alignment: Alignment = LabelLayoutDefaults.defaultAlignment,
                             flexibility: Flexibility = LabelLayoutDefaults.defaultFlexibility,
                             viewReuseId: String? = nil,
@@ -83,6 +99,8 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
                   font: font,
                   lineHeight: lineHeight,
                   numberOfLines: numberOfLines,
+                  lineBreakMode: lineBreakMode,
+                  textAlignment: textAlignment,
                   alignment: alignment,
                   flexibility: flexibility,
                   viewReuseId: viewReuseId,
@@ -93,6 +111,8 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
                             font: UIFont = LabelLayoutDefaults.defaultFont,
                             lineHeight: CGFloat? = nil,
                             numberOfLines: Int = LabelLayoutDefaults.defaultNumberOfLines,
+                            lineBreakMode: NSLineBreakMode = LabelLayoutDefaults.defaultLineBreakMode,
+                            textAlignment: NSTextAlignment = LabelLayoutDefaults.defaultTextAlignment,
                             alignment: Alignment = LabelLayoutDefaults.defaultAlignment,
                             flexibility: Flexibility = LabelLayoutDefaults.defaultFlexibility,
                             viewReuseId: String? = nil,
@@ -102,6 +122,8 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
                   font: font,
                   lineHeight: lineHeight,
                   numberOfLines: numberOfLines,
+                  lineBreakMode: lineBreakMode,
+                  textAlignment: textAlignment,
                   alignment: alignment,
                   flexibility: flexibility,
                   viewReuseId: viewReuseId,
@@ -141,6 +163,8 @@ open class LabelLayout<Label: UILabel>: BaseLayout<Label>, ConfigurableLayout {
         case .attributed(let attributedText):
             label.attributedText = attributedText
         }
+        label.lineBreakMode = lineBreakMode
+        label.textAlignment = textAlginment
     }
 
     open override var needsView: Bool {
@@ -156,5 +180,7 @@ public class LabelLayoutDefaults {
     public static let defaultFont = UILabel().font ?? UIFont.systemFont(ofSize: 17)
     public static let defaultAlignment = Alignment.topLeading
     public static let defaultFlexibility = Flexibility.flexible
+    public static let defaultLineBreakMode = UILabel().lineBreakMode
+    public static let defaultTextAlignment = UILabel().textAlignment
 }
 

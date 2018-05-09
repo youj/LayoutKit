@@ -200,6 +200,38 @@ class LabelLayoutTests: XCTestCase {
         let maxSize = CGSize(width: 17, height: .max)
         XCTAssertEqual(layout.measurement(within: maxSize).size, label.sizeThatFits(maxSize))
     }
+
+    func testLineBreakMode() {
+        let text = "text"
+        let lineBreakMode: NSLineBreakMode = .byTruncatingMiddle
+
+        let layout = LabelLayout(text: text, lineBreakMode: lineBreakMode)
+        let label = layout.arrangement().makeViews() as? UILabel
+        XCTAssertEqual(label?.lineBreakMode, lineBreakMode)
+
+        var paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineBreakMode = .byWordWrapping
+        let attributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey.paragraphStyle: paragraphStyle]
+        let attributedLayout = LabelLayout(attributedText: NSAttributedString(string: text, attributes: attributes), lineBreakMode: lineBreakMode)
+        let attributedLabel = attributedLayout.arrangement().makeViews() as? UILabel
+        XCTAssertEqual(attributedLabel?.lineBreakMode, lineBreakMode)
+    }
+
+    func testTextAlignment() {
+        let text = "text"
+        let textAlignment: NSTextAlignment = .right
+
+        let layout = LabelLayout(text: text, textAlignment: textAlignment)
+        let label = layout.arrangement().makeViews() as? UILabel
+        XCTAssertEqual(label?.textAlignment, textAlignment)
+
+        var paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = .center
+        let attributes: [NSAttributedStringKey: Any] = [NSAttributedStringKey.paragraphStyle: paragraphStyle]
+        let attributedLayout = LabelLayout(attributedText: NSAttributedString(string: text, attributes: attributes), textAlignment: textAlignment)
+        let attributedLabel = attributedLayout.arrangement().makeViews() as? UILabel
+        XCTAssertEqual(attributedLabel?.textAlignment, textAlignment)
+    }
 }
 
 extension UILabel {

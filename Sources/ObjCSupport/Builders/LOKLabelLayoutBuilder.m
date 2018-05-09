@@ -31,6 +31,8 @@
                                                            font:self.font
                                                      lineHeight:self.lineHeight
                                                   numberOfLines:self.numberOfLines
+                                                  lineBreakMode:self.lineBreakMode
+                                                  textAlignment:self.textAlignment
                                                       alignment:self.alignment
                                                     flexibility:self.flexibility
                                                     viewReuseId:self.viewReuseId
@@ -41,6 +43,8 @@
                                                  font:self.font
                                            lineHeight:self.lineHeight
                                         numberOfLines:self.numberOfLines
+                                        lineBreakMode:self.lineBreakMode
+                                        textAlignment:self.textAlignment
                                             alignment:self.alignment
                                           flexibility:self.flexibility
                                           viewReuseId:self.viewReuseId
@@ -66,6 +70,20 @@
 - (LOKLabelLayoutBuilder * _Nonnull (^)(CGFloat))withLineHeight {
     return ^LOKLabelLayoutBuilder *(CGFloat lineHeight){
         self.lineHeight = lineHeight;
+        return self;
+    };
+}
+
+- (LOKLabelLayoutBuilder * _Nonnull (^)(NSLineBreakMode))withLineBreakMode {
+    return ^LOKLabelLayoutBuilder *(NSLineBreakMode lineBreakMode){
+        self.lineBreakMode = lineBreakMode;
+        return self;
+    };
+}
+
+- (LOKLabelLayoutBuilder * _Nonnull (^)(NSTextAlignment))withTextAlignment {
+    return ^LOKLabelLayoutBuilder *(NSTextAlignment textAlignment){
+        self.textAlignment = textAlignment;
         return self;
     };
 }

@@ -20,11 +20,16 @@
 @property (nonatomic, nullable) UIFont *font;
 @property (nonatomic) NSInteger numberOfLines;
 @property (nonatomic) CGFloat lineHeight;
+@property (nonatomic) NSLineBreakMode lineBreakMode;
+@property (nonatomic) NSTextAlignment textAlignment;
+
 @property (nonatomic, nullable) void (^ configure)(UILabel * _Nonnull);
 
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withFont)(UIFont * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withNumberOfLines)(NSInteger);
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withLineHeight)(CGFloat);
+@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withLineBreakMode)(NSLineBreakMode);
+@property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withTextAlignment)(NSTextAlignment);
 
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withAlignment)(LOKAlignment * _Nullable);
 @property (nonatomic, nonnull, readonly) LOKLabelLayoutBuilder * _Nonnull(^withFlexibility)(LOKFlexibility * _Nullable);
